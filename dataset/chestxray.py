@@ -1,6 +1,7 @@
 from torch.utils.data import Dataset
 import pandas as pd
 import os
+from torchvision.io import read_image, ImageReadMode
 
 class ChestXRayDataset(Dataset):
     '''
