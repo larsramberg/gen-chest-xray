@@ -8,12 +8,15 @@ class ChestXRayDataset(Dataset):
     '''
     Class intended for loading data and annotations for ChestXRay14
     '''
+
+    target_labels = ['No Finding', 'Edema', 'Hernia', 'Atelectasis', 'Consolidation', 'Pneumonia', 'Infiltration', 'Nodule', 'Pleural_Thickening', 'Effusion',  'Cardiomegaly', 'Emphysema', 'Pneumothorax', 'Mass', 'Fibrosis']
+
+
     def __init__(self, annotations_file, img_dir, transform=None, target_transform=None, read_lib="torch"):
         self.img_labels = pd.read_csv(annotations_file)
         self.img_dir = img_dir
         self.transform = transform
         self.target_transform = target_transform
-        self.target_labels = ['Edema', 'Hernia', 'Atelectasis', 'Consolidation', 'Pneumonia', 'Infiltration', 'Nodule', 'Pleural_Thickening', 'Effusion',  'Cardiomegaly', 'Emphysema', 'Pneumothorax', 'Mass', 'Fibrosis']
         self.image_read_lib = read_lib
 
     def __len__(self):
@@ -32,6 +35,6 @@ class ChestXRayDataset(Dataset):
         if self.transform:
             image = self.transform(image)
         if self.target_transform:
-            label = self.target_transform(label, self.target_labels)
+            label = self.target_transform(label, ChestXRayDataset.target_labels)
         return image, label
         
