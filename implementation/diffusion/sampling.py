@@ -3,9 +3,10 @@ from diffusers import DDPMScheduler
 from datahandling.transforms import to_class_int
 from util.plot_tools import show_and_save
 
-def sample_single_image(model, img_size, device, timesteps, label, target_labels, epoch):
+def sample_single_image(model, img_size, device, num_train_time_steps, label, target_labels):
+    model.eval()
     with torch.no_grad():
-        scheduler = DDPMScheduler(num_train_timesteps=timesteps)
+        scheduler = DDPMScheduler(num_train_timesteps=num_train_time_steps)
         image = torch.randn(1, 3, img_size, img_size).to(device)
         label = to_class_int(label, target_labels).to(device)
 
@@ -16,5 +17,5 @@ def sample_single_image(model, img_size, device, timesteps, label, target_labels
         image = ((image / 2) + .5).clamp(0,1 )
         image = image.permute(0,2,3,1).squeeze().detach().cpu().numpy()
         output = (image * 255).astype(int)
-        show_and_save(output, epoch, label)
+        return output
         

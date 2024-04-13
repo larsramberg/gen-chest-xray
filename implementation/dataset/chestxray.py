@@ -8,8 +8,9 @@ class ChestXRayDataset(Dataset):
     '''
     Class intended for loading data and annotations for ChestXRay14
     '''
-
-    target_labels = ['No Finding', 'Edema', 'Hernia', 'Atelectasis', 'Consolidation', 'Pneumonia', 'Infiltration', 'Nodule', 'Pleural_Thickening', 'Effusion',  'Cardiomegaly', 'Emphysema', 'Pneumothorax', 'Mass', 'Fibrosis']
+    target_labels = ['Edema', 'Hernia', 'Atelectasis', 'Consolidation', 'Pneumonia', 'Infiltration', 'Nodule', 'Pleural_Thickening', 'Effusion',  'Cardiomegaly', 'Emphysema', 'Pneumothorax', 'Mass', 'Fibrosis']
+    
+    #target_labels = ['No Finding', 'Edema', 'Hernia', 'Atelectasis', 'Consolidation', 'Pneumonia', 'Infiltration', 'Nodule', 'Pleural_Thickening', 'Effusion',  'Cardiomegaly', 'Emphysema', 'Pneumothorax', 'Mass', 'Fibrosis']
 
 
     def __init__(self, annotations_file, img_dir, transform=None, target_transform=None, read_lib="torch"):
