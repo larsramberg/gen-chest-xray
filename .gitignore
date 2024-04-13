@@ -3,3 +3,5 @@ __pycache__
 .ipynb_checkpoints/
 .idea/
 databases/
+/implementation/data_analysis
+/implementation/result
